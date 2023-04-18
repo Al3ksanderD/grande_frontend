@@ -9,6 +9,7 @@ const useFetch = (url) => {
         const abortConst = new AbortController();
 
 
+        setTimeout(() => {
             fetch(url, {signal: abortConst.signal})
         .then(res => {
             if(!res.ok){
@@ -31,6 +32,7 @@ const useFetch = (url) => {
             }
             
         });
+        }, 0)
         return () => abortConst.abort();
       }, [url]);
       return {data, isPending, error}

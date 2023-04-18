@@ -7,12 +7,11 @@ import './CitySite.css';
 export const CitySite = () => {
   
   const {cityname} = useParams();
-  // useEffect(() => {
-  //   fetch('/api/v1/companies/city/Warszawa')
-  // .then(res => res.json())
-  // .then(json => console.log(json))
-  //  }, []);
-//   const {data, error, isPending} = useFetch(`http://localhost:8080/api/v1/companies/city/` + cityname)
+  const [data, setData] = useState(null);
+  fetch('http://localhost:8080/api/v1/companies/city/Warszawa')
+  .then(res => res.json())
+  .then(json => setData(json))
+  
   return (
     <div className='city__container'>
         <Navbar />
@@ -21,51 +20,22 @@ export const CitySite = () => {
             <h2> Proceed by Picking a Company </h2>
         </div>
         <div className='city__container-content'>
-
-            <div className='city__container-content__company'>
-              <Link to={'/companies/Real Company'}>
+            {data && data.map(element => (
+              <div className='city__container-content__company'>
+              <Link to={'/companies/' + element.id}>
               <div className='city__container-content__company-name'>
               
-                Real Company
+                {element.name}
                 
               </div>
               </Link>
               <div className='line'></div>
               <div className='city__container-content__company-description'>
-                We are an existing company please trust us, we're not trying to fool you!
-              </div>
-              
-            </div>
-            <div className='city__container-content__company'>
-              <Link to={'/companies/Real Company'}>
-              <div className='city__container-content__company-name'>
-              
-                Real Company
-                
-              </div>
-              </Link>
-              <div className='line'></div>
-              <div className='city__container-content__company-description'>
-                We are an existing company please trust us, we're not trying to fool you!
-              </div>
-              
-            </div>
-            <div className='city__container-content__company'>
-              <Link to={'/companies/Real Company'}>
-              <div className='city__container-content__company-name'>
-              
-                Real Company
-                
-              </div>
-              </Link>
-              <div className='line'></div>
-              <div className='city__container-content__company-description'>
-                We are an existing company please trust us, we're not trying to fool you!
-              </div>
-              
-            </div>
-           
-           
+                {element.description}
+              </div> 
+            </div>  
+            ))}
+            
         </div>
 
 
