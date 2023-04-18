@@ -5,6 +5,9 @@ import './index.css';
 import SignInSide from './containers/login/SignInSide';
 import Navbar from './components/navbars/Navbar';
 import HomeSite from './containers/homesite/HomeSite';
+import CitySite from './containers/citysite/CitySite';
+import { CompanySite } from './containers/companysite/CompanySite';
+import EmployeeSite from './containers/employeesite/EmployeeSite';
 
 const App = () => {
   return (
@@ -14,7 +17,9 @@ const App = () => {
           
           <Route exact path='/login' element={<SignInSide />} />
           <Route exact path='/home' element={<HomeSite />} />
-            
+          <Route path='/cities/:cityname' element={<CitySite/>} /> 
+          <Route path='/companies/:companyname' element={<CompanySite/>} /> 
+          <Route path='/employees/:employeename' element={<EmployeeSite/>} />            
 
         </Routes>
       </Router>
