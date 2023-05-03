@@ -1,30 +1,42 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './CompanySite.css';
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+import useFetch from '../../components/utils/usefetch/useFetch';
 import Navbar from '../../components/navbars/Navbar';
 
 export const CompanySite = () => {
-  const {companyname} = useParams();
+  const {companyid} = useParams();
+  console.log("ID" + companyid)
+  const {data, error, isPending} = useFetch("http://localhost:8080/api/v1/companies/id/" + companyid)
+ 
+  
   return (
     <div className='city__container'>
         <Navbar />
         <div className='company__container-name' >
-            <h1>{companyname}</h1>
+          {data && <h1> {data.name}</h1>}
+          {isPending && <h1>Loading...</h1>}
+          {error && <h1>Something went wrong!</h1>}
             <h2> Now Pick a Employee </h2>
         </div>
         <div className='company__container-content'>
+            {data && data.employees.map(element => (
+              
+              
             <div className='company__container-content__employee'>
-              <Link to={'/employee/Joe Doe'}>  
+              <Link to={'/employees/' + 1}>  
               <div className='company__container-content__employee-name'>
-                Joe Doe
+                {element.name}
               </div>
               </Link>
               <div className='line'></div>
               <div className='company__container-content__employee-description'>
-                Im an existing personal trainer
+                {element.description}
               </div>
             </div>
+            ))}
+            
             
         </div>
 

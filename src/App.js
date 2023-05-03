@@ -18,8 +18,8 @@ const App = () => {
           <Route exact path='/login' element={<SignInSide />} />
           <Route exact path='/home' element={<HomeSite />} />
           <Route path='/cities/:cityname' element={<CitySite/>} /> 
-          <Route path='/companies/:companyname' element={<CompanySite/>} /> 
-          <Route path='/employees/:employeename' element={<EmployeeSite/>} />            
+          <Route path='/companies/:companyid' element={<CompanySite/>} /> 
+          <Route path='/employees/:employeid' element={<EmployeeSite/>} />            
 
         </Routes>
       </Router>

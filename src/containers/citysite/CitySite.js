@@ -9,7 +9,6 @@ export const CitySite = () => {
   const {cityname} = useParams();
   // const [data, setData] = useState(null);
   const {data, error, isPending} = useFetch("http://localhost:8080/api/v1/companies/city/" + cityname)
-  console.log(data + isPending)
   
   return (
     <div className='city__container'>

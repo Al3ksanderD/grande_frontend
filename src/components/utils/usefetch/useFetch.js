@@ -10,7 +10,6 @@ const useFetch = (url) => {
         .then(res => {
             if(!res.ok){
                 setError("Could not feth the data for that resource!")
-                console.log("Erorr")
                 throw Error("Could not feth the data for that resource!") 
             }
             return res.json()
@@ -25,7 +24,7 @@ const useFetch = (url) => {
 
         
         
-      });
+      }, []);
       return {data, isPending, error}
       
 }
