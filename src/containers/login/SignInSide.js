@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Login  from '../../assets/login.jpeg';
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -38,6 +39,11 @@ export default function SignInSide() {
       password: data.get('password'),
     });
   };
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `../home`; 
+    navigate(path);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -102,6 +108,7 @@ export default function SignInSide() {
                 type="submit"
                 fullWidth
                 variant="contained"
+                onClick={routeChange}
                 sx={{ mt: 3, mb: 2 }}
               >
                 Sign In

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import useFetch from '../../components/utils/usefetch/useFetch';
 import Navbar from '../../components/navbars/Navbar';
 import {useNavigate} from 'react-router-dom';
+import './EmployeeSite.css';
 
 export const EmployeeSite = () => {
   const {employeid} = useParams();
@@ -13,8 +14,6 @@ export const EmployeeSite = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("trying to put")
-    console.log(service)
     fetch('http://localhost:8080/api/v1/reservation/reseravtions/'+ service +'/user/1', {
             method: 'PUT',
             headers: { "Content-Type": "application/json"}
@@ -44,25 +43,32 @@ export const EmployeeSite = () => {
             element.name
           ))}
         </div>
-        <div className='employee__container-content__reservation'>
-        {dataRes && dataRes.map(element => (
-            <div>
-              {element.date}
-              <form onSubmit={handleSubmit}>
-                <select 
-                onChange={(e) => setService(e.target.value) }>
-                  <option value="" disabled selected>Select your option</option>
-                  {data && data.offeredServices.map(element => (
-                  <option value={element.id}> {element.name}</option>
-                  ))}
-                </select>
-                <button>Submit</button>
+        <div className='lineE'>
 
-              </form>
-              
-            </div>  
-            
-          ))}
+        </div>
+        <div className='employee__container-content__reservations'>
+          <div >
+            {dataRes && dataRes.map(element => (
+                <div className='employee__container-content__reservation'>
+                  {element.date}
+                  <div className='hidden'> 
+                    <form onSubmit={handleSubmit}>
+                      <select 
+                      onChange={(e) => setService(e.target.value) }>
+                        <option value="" disabled selected>Select your option</option>
+                        {data && data.offeredServices.map(element => (
+                        <option value={element.id}> {element.name}</option>
+                        ))}
+                      </select>
+                      <button>Submit</button>
+
+                    </form>
+                  </div>
+                  
+                </div>  
+                
+              ))}
+          </div>
         </div>
 
       </div>
